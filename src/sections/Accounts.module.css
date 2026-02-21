@@ -1,0 +1,106 @@
+.accounts {
+  background: var(--color-brown-50);
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-brown-600);
+  margin: 5rem 0 0.5rem;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--color-gray-600);
+  margin: 0 0 1rem;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.fold {
+  border: 1px solid var(--color-gray-200);
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  background: #fff;
+}
+
+.foldHead {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-gray-800);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.foldHead:hover {
+  background: var(--color-gray-50);
+}
+
+.foldIcon {
+  font-size: 0.7rem;
+  color: var(--color-gray-500);
+}
+
+.foldBody {
+  padding: 0 1rem 1rem;
+  border-top: 1px solid var(--color-gray-100);
+}
+
+.accountRow {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-gray-100);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.accountRow:last-child {
+  border-bottom: none;
+}
+
+.relation {
+  font-size: 0.8rem;
+  color: var(--color-gray-900);
+  flex: 0 0 auto;
+}
+
+.accountLine {
+  font-size: 1rem;
+  color: var(--color-gray-900);
+  margin: 0;
+  flex: 1 1 auto;
+}
+
+.copyBtn {
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  color: var(--color-gray-900);
+  background: var(--color-brown-100);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.copyBtn:hover {
+  background: var(--color-brown-200);
+}
+
+.placeholder {
+  font-size: 1rem;
+  color: var(--color-gray-400);
+  margin: 0.5rem 0 0;
+  font-style: italic;
+}

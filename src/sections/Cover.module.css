@@ -1,0 +1,71 @@
+.cover {
+    padding: 5% 0 1rem;
+    background: var(--color-brown-50);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.heroWrap {
+    position: relative;
+    width: 95%;
+    margin: 5% auto 0;
+    background: var(--color-brown-50);
+    overflow: hidden;
+    display: block;
+}
+
+.heroImage {
+    width: 100%;
+    height: auto;
+    display: block;
+    vertical-align: top;
+}
+
+.heroPlaceholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    width: 100%;
+    min-height: 12rem;
+    color: var(--color-gray-400);
+    font-size: 1rem;
+    background: var(--color-brown-50);
+}
+
+.heroPlaceholderHint {
+    font-size: 0.75rem;
+    color: var(--color-gray-300);
+}
+
+.content {
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.namesLine {
+    font-family: var(--font-ephesis);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--color-gray-900);
+    margin: 0 0 0.75rem;
+    letter-spacing: 0.08em;
+}
+
+.dateTimeLine {
+    font-size: 1rem;
+    font-weight: 530;
+    color: var(--color-gray-900);
+    margin: 8rem 0 0.35rem;
+    letter-spacing: 0.1rem;
+}
+
+.venueLine {
+    font-size: 1rem;
+    font-weight: 530;
+    color: var(--color-gray-900);
+    margin: 0;
+    letter-spacing: 0.1rem;
+}

@@ -1,0 +1,104 @@
+.calendar {
+  background: var(--color-brown-50);
+  text-align: center;
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-brown-600);
+  margin: 0 0 0.75rem;
+}
+
+.dateTime {
+  font-size: 1rem;
+  color: #92846f;
+  margin: 0 0 0.25rem;
+  font-weight: 500;
+}
+
+.venueName {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #92846f;
+  margin: 0 0 1rem;
+}
+
+.calendarBox {
+  width: 95%;
+  max-width: 95%;
+  margin: 0 auto 1.25rem;
+  padding: 1.25rem;
+  background: transparent;
+  border-radius: 12px;
+}
+
+.calendarMonth {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin: 5rem 0 3rem;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.weekday {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-gray-500);
+  text-align: center;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--color-gray-700);
+  border-radius: 6px;
+  width: 100%;
+  min-height: 0;
+}
+
+.dayHeartWrap {
+  position: relative;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 0;
+}
+
+.dayHeartWrap .day {
+  position: relative;
+  z-index: 1;
+  color: var(--color-gray-900);
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.dayHeart {
+  position: absolute;
+  width: 85%;
+  height: 85%;
+  bottom: 1px;
+  color: #92846f;
+  pointer-events: none;
+  filter: drop-shadow(0 0 0.3px currentColor);
+}
+

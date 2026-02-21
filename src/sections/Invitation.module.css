@@ -1,0 +1,93 @@
+.invitation {
+  padding-left: 0;
+  padding-right: 0;
+  background: var(--color-brown-50);
+  text-align: center;
+}
+
+.invitationContent {
+  padding-left: var(--section-padding);
+  padding-right: var(--section-padding);
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 1.215rem;
+  font-weight: 700;
+  color: var(--color-brown-600);
+  margin: 5rem 0 5rem;
+  letter-spacing: 0.1rem;
+}
+
+.body {
+  font-size: 1rem;
+  color: var(--color-gray-900);
+  line-height: 1.85;
+  margin: 0 0 1.25rem;
+  white-space: pre-line;
+}
+
+.names {
+  font-size: 1rem;
+  color: var(--color-gray-900);
+  margin: 3rem 0 5rem 0;
+}
+
+.parentNames {
+  font-size: 1rem;
+  color: var(--color-gray-900);
+  margin: 0.4rem 0;
+}
+
+.parentNamesSpacing {
+  font-size: 0.8rem;
+  letter-spacing: 0.1rem;
+}
+
+.invitationImageWrap {
+  position: relative;
+  width: 90%;
+  margin: 1.5rem auto 0;
+  margin-bottom: 2.5rem;
+  min-height: 120px;
+  background: var(--color-brown-50);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.invitationImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  vertical-align: middle;
+}
+
+.invitationImagePlaceholder {
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gray-400);
+  font-size: 1rem;
+  background: var(--color-brown-50);
+}
+
+.contactBtn {
+  margin-top: 1.5rem;
+  padding: 0.65rem 1.5rem;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--color-brown-600);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.contactBtn:hover {
+  background: var(--color-brown-700);
+}
