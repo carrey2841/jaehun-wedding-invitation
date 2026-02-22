@@ -5,10 +5,12 @@ import { Gallery } from './sections/Gallery'
 import { Directions } from './sections/Directions'
 import { Accounts } from './sections/Accounts'
 import { Share } from './sections/Share'
+import { BackgroundMusic } from './components/BackgroundMusic'
 
 function App() {
   return (
     <>
+      <BackgroundMusic />
       <Cover />
       <Invitation />
       <CalendarSection />

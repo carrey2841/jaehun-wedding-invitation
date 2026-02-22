@@ -1,3 +1,11 @@
 .section {
   padding: var(--section-padding);
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 2s ease-out, transform 2s ease-out;
+}
+
+.sectionInView {
+  opacity: 1;
+  transform: translateY(0);
 }

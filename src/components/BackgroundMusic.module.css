@@ -1,0 +1,60 @@
+.btn {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 999;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* 재생 중: 세로 바가 위아래로 움직이는 이퀄라이저 */
+.bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+  height: 0.65rem;
+}
+
+.bar {
+  width: 2px;
+  height: 100%;
+  background: #fff;
+  border-radius: 1px;
+  animation: barBounce 0.6s ease-in-out infinite;
+}
+
+.bar:nth-child(1) { animation-delay: 0s; }
+.bar:nth-child(2) { animation-delay: 0.15s; }
+.bar:nth-child(3) { animation-delay: 0.3s; }
+.bar:nth-child(4) { animation-delay: 0.45s; }
+
+@keyframes barBounce {
+  0%, 100% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
+}
+
+/* 꺼짐: 재생(삼각형) 버튼 */
+.playIcon {
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 4px 0 4px 7px;
+  border-color: transparent transparent transparent #fff;
+  margin-left: 1px;
+}

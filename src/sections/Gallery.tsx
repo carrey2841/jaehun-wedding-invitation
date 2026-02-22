@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 import { Section } from '../components/Section'
 import { useInvitationStore } from '../stores/invitationStore'
 import { GalleryLightbox } from '../components/GalleryLightbox'
@@ -75,13 +76,15 @@ export function Gallery() {
           />
         ))}
       </div>
-      {lightboxIndex !== null && (
-        <GalleryLightbox
-          images={Array.from({ length: total }, (_, i) => getImageSrc(i + 1, ext))}
-          currentIndex={lightboxIndex - 1}
-          onClose={closeLightbox}
-        />
-      )}
+      {lightboxIndex !== null &&
+        createPortal(
+          <GalleryLightbox
+            images={Array.from({ length: total }, (_, i) => getImageSrc(i + 1, ext))}
+            currentIndex={lightboxIndex - 1}
+            onClose={closeLightbox}
+          />,
+          document.body
+        )}
     </Section>
   )
 }
