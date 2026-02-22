@@ -34,6 +34,8 @@ export function Cover() {
             src={src}
             alt="청첩장 대표"
             className={styles.heroImage}
+            fetchPriority="high"
+            decoding="async"
             onError={() => setImageError(true)}
           />
         ) : (

@@ -155,15 +155,28 @@ export function GalleryLightbox({ images, currentIndex: initialIndex, onClose }:
             transition: isDragging ? 'none' : 'transform 0.3s ease-out',
           }}
         >
-          {images.map((src, i) => (
-            <div
-              key={i}
-              className={styles.slide}
-              style={{ width: `${100 / images.length}%` }}
-            >
-              <img src={src} alt="" className={styles.image} draggable={false} />
-            </div>
-          ))}
+          {images.map((src, i) => {
+            const shouldLoad = Math.abs(i - currentIndex) <= 1
+            return (
+              <div
+                key={i}
+                className={styles.slide}
+                style={{ width: `${100 / images.length}%` }}
+              >
+                {shouldLoad ? (
+                  <img
+                    src={src}
+                    alt=""
+                    className={styles.image}
+                    draggable={false}
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className={styles.slidePlaceholder} aria-hidden />
+                )}
+              </div>
+            )
+          })}
         </div>
       </div>
       <button

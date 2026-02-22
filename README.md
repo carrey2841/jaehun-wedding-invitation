@@ -1,6 +1,20 @@
-# React + TypeScript + Vite
+# React + TypeScript + Vite (모바일 청첩장)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+### 이미지 최적화 (갤러리 + cover + invitation)
+
+`public/gallery`, `public/cover.*`, `public/invitation.*` 이미지를 리사이즈·압축합니다. `pnpm dev` / `pnpm run build` 시 자동 실행됩니다.
+
+```bash
+pnpm add -D sharp   # 최초 1회
+pnpm run optimize:gallery              # gallery-optimized/, cover-optimized.jpg, invitation-optimized.jpg 생성
+pnpm run optimize:gallery -- --replace  # gallery 만 원본 백업 후 최적화본으로 교체
+```
+
+- **대상**: `public/cover.jpeg`(또는 .png 등), `public/invitation.jpg`(또는 .png), `public/gallery/*`
+- **기준**: 긴 변 최대 1200px, JPEG 품질 82
+- **배포**: 빌드 시 dist 에 최적화본만 포함됨
 
 Currently, two official plugins are available:
 

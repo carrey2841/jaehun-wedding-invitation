@@ -64,7 +64,42 @@ const initialState: InvitationData = {
   gallery: { totalCount: 50, extension: 'jpg' },
   parents: {},
   contact: {},
-  accountsBySide: { groom: [], bride: [] },
+  accountsBySide: {
+    groom: [
+      {
+        relation: '신랑 이재훈',
+        bankName: '카카오뱅크',
+        accountNumber: '3333-01-4007625',
+      },
+      {
+        relation: '신랑 아버지',
+        bankName: 'OO은행',
+        accountNumber: '0000-0000-00000',
+      },
+      {
+        relation: '신랑 어머니',
+        bankName: 'OO은행',
+        accountNumber: '0000-0000-00000',
+      },
+    ],
+    bride: [
+      {
+        relation: '신부 이영주',
+        bankName: 'OO은행',
+        accountNumber: '0000-0000-00000',
+      },
+      {
+        relation: '신부 아버지',
+        bankName: 'OO은행',
+        accountNumber: '0000-0000-00000',
+      },
+      {
+        relation: '신부 어머니',
+        bankName: 'OO은행',
+        accountNumber: '0000-0000-00000',
+      },
+    ],
+  },
 }
 
 export const useInvitationStore = create<InvitationStore>((set) => ({

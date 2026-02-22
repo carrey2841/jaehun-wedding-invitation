@@ -34,6 +34,11 @@
   height: 100%;
 }
 
+.slidePlaceholder {
+  min-height: 100%;
+  width: 100%;
+}
+
 .closeBtn {
   position: fixed;
   top: 1rem;
