@@ -67,36 +67,42 @@ const initialState: InvitationData = {
   accountsBySide: {
     groom: [
       {
-        relation: '신랑 이재훈',
+        relation: '신랑',
+        accountHolder: '이재훈',
         bankName: '카카오뱅크',
         accountNumber: '3333-01-4007625',
       },
       {
         relation: '신랑 아버지',
+        accountHolder: '이관섭',
         bankName: 'OO은행',
         accountNumber: '0000-0000-00000',
       },
       {
         relation: '신랑 어머니',
+        accountHolder: '이미라',
         bankName: 'OO은행',
         accountNumber: '0000-0000-00000',
       },
     ],
     bride: [
       {
-        relation: '신부 이영주',
-        bankName: 'OO은행',
-        accountNumber: '0000-0000-00000',
+        relation: '신부',
+        accountHolder: '이영주',
+        bankName: '토스뱅크',
+        accountNumber: '1001-7608-8529',
       },
       {
         relation: '신부 아버지',
-        bankName: 'OO은행',
-        accountNumber: '0000-0000-00000',
+        accountHolder: '이승복',
+        bankName: '국민은행',
+        accountNumber: '080240281889',
       },
       {
         relation: '신부 어머니',
-        bankName: 'OO은행',
-        accountNumber: '0000-0000-00000',
+        accountHolder: '김현주',
+        bankName: '신한은행',
+        accountNumber: '110-080-984411',
       },
     ],
   },

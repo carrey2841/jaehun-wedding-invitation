@@ -76,24 +76,25 @@
   padding: 0.5rem 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 0.25rem;
+  align-items: stretch;
+  gap: 0.35rem;
   text-align: left;
 }
 
+/* 첫 줄: 소개 + 이름 */
 .relation {
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--color-gray-900);
 }
 
+/* 그 아래: 계좌 */
 .accountLineWrap {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
   gap: 0.5rem;
-  margin-top: 0.75rem;
 }
 
 .accountLine {

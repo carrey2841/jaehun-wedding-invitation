@@ -28,13 +28,14 @@ function CopyButton({ text }: { text: string }) {
 }
 
 function AccountRow({ account }: { account: AccountInfo }) {
-  const { relation, bankName, accountNumber } = account
-  const hasInfo = bankName || accountNumber
-  if (!relation && !hasInfo) return null
+  const { relation, bankName, accountHolder, accountNumber } = account
+  const hasAccount = bankName || accountNumber
+  const title = [relation, accountHolder].filter(Boolean).join(' ').trim()
+  if (!title && !hasAccount) return null
   return (
     <div className={styles.accountRow}>
-      {relation && <div className={styles.relation}>{relation}</div>}
-      {hasInfo && (
+      {title && <div className={styles.relation}>{title}</div>}
+      {hasAccount && (
         <div className={styles.accountLineWrap}>
           <p className={styles.accountLine}>
             {[bankName, accountNumber].filter(Boolean).join(' ')}
