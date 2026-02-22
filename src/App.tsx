@@ -5,7 +5,6 @@ import { Gallery } from './sections/Gallery'
 import { Directions } from './sections/Directions'
 import { Accounts } from './sections/Accounts'
 import { Guestbook } from './sections/Guestbook'
-import { Share } from './sections/Share'
 import { BackgroundMusic } from './components/BackgroundMusic'
 
 function App() {
@@ -19,7 +18,9 @@ function App() {
       <Directions />
       <Accounts />
       <Guestbook />
-      <Share />
+      <footer className="copyright">
+        © 2026 Jaehun & Youngju
+      </footer>
     </>
   )
 }

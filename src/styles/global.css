@@ -64,3 +64,11 @@ img {
   height: auto;
   display: block;
 }
+
+.copyright {
+  text-align: center;
+  padding: 1.5rem var(--section-padding) 2rem;
+  font-size: 0.8rem;
+  color: var(--color-gray-500);
+  letter-spacing: 0.05em;
+}
