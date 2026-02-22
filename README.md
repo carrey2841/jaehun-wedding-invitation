@@ -23,6 +23,21 @@ pnpm run optimize:gallery -- --replace  # gallery 만 원본 백업 후 최적�
 - **설정 방법**: [docs/CLOUDFLARE-D1-SETUP.md](docs/CLOUDFLARE-D1-SETUP.md) 참고 (D1 생성 → 스키마 실행 → Pages에 D1 바인딩 → 배포)
 - **기능**: 축하 메시지 등록(작성자 10자, 비밀번호, 메시지 200자), 최신 5개 + 더보기(10개씩), 비밀번호 확인 후 soft delete
 
+### 카카오톡 공유 (피드 + 버튼)
+
+공유 시 커버 이미지와 **「모바일 청첩장 보기」** 버튼이 나오려면, 카카오 개발자 콘솔에서 **두 곳**을 모두 설정해야 합니다.
+
+1. **플랫폼 키 → JavaScript 키**  
+   - JavaScript 키 복사 → `.env`에 `VITE_KAKAO_JAVASCRIPT_KEY=키`  
+   - **JavaScript SDK 도메인**에 사이트 주소 등록 (예: `https://your-site.pages.dev`, 로컬 테스트 시 `http://localhost:5173` 추가)
+
+2. **제품 링크 관리 → 웹 도메인** (버튼 노출 필수)  
+   - [앱 관리 페이지](https://developers.kakao.com/console/app) → 앱 선택 → **앱** → **제품 링크 관리**  
+   - **웹 도메인** → **도메인 등록** → 청첩장 배포 주소 입력 (예: `https://your-site.pages.dev`, 끝에 `/` 없이)  
+   - 저장 후 **기본 도메인**으로 선택해 두면 됨  
+
+제품 링크 관리에 웹 도메인이 없으면 피드는 보여도 **버튼이 아예 노출되지 않습니다.** 링크 주소의 도메인은 반드시 여기 등록된 값과 같아야 합니다.
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh

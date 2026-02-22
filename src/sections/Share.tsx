@@ -84,6 +84,7 @@ export function Share() {
             imageUrl: coverImageUrl,
             link,
           },
+          buttonTitle: '모바일 청첩장 보기',
           buttons: [{ title: '모바일 청첩장 보기', link }],
         })
         return
