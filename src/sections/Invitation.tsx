@@ -7,9 +7,11 @@ import styles from './Invitation.module.css'
 const INVITATION_IMAGE = '/invitation.jpg'
 
 export function Invitation() {
-  const { invitationText } = useInvitationStore()
+  const { invitationText, parents } = useInvitationStore()
   const { title, body, groomLine, brideLine } = invitationText
   const [imgError, setImgError] = useState(false)
+  const groomParents = `${parents.groomFather ?? '이관섭'} • ${parents.groomMother ?? '이미라'}`
+  const brideParents = `${parents.brideFather ?? '이승복'} • ${parents.brideMother ?? '김현주'}`
 
   return (
     <Section id="invitation" className={styles.invitation}>
@@ -36,10 +38,10 @@ export function Invitation() {
       </div>
       <div className={styles.invitationContent}>
         <p className={styles.parentNames}>
-          이관섭 • 이미라 <span className={styles.parentNamesSpacing}>의 장남</span> 이재훈
+          {groomParents} <span className={styles.parentNamesSpacing}>의 장남</span> 이재훈
         </p>
         <p className={styles.parentNames}>
-          이승복 • 김현주 <span className={styles.parentNamesSpacing}>의 장녀</span> 이영주
+          {brideParents} <span className={styles.parentNamesSpacing}>의 장녀</span> 이영주
         </p>
       </div>
     </Section>

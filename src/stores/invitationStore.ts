@@ -62,7 +62,12 @@ const initialState: InvitationData = {
 현대백화점 방향 직진 천호역 10번 출구 앞`,
   },
   gallery: { totalCount: 50, extension: 'jpg' },
-  parents: {},
+  parents: {
+    groomFather: '이관섭',
+    groomMother: '이미라',
+    brideFather: '이승복',
+    brideMother: '김현주',
+  },
   contact: {},
   accountsBySide: {
     groom: [
