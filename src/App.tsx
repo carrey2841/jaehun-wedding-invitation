@@ -4,6 +4,7 @@ import { CalendarSection } from './sections/CalendarSection'
 import { Gallery } from './sections/Gallery'
 import { Directions } from './sections/Directions'
 import { Accounts } from './sections/Accounts'
+import { Guestbook } from './sections/Guestbook'
 import { Share } from './sections/Share'
 import { BackgroundMusic } from './components/BackgroundMusic'
 
@@ -17,6 +18,7 @@ function App() {
       <Gallery />
       <Directions />
       <Accounts />
+      <Guestbook />
       <Share />
     </>
   )

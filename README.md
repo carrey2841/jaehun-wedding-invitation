@@ -16,6 +16,13 @@ pnpm run optimize:gallery -- --replace  # gallery 만 원본 백업 후 최적�
 - **기준**: 긴 변 최대 1200px, JPEG 품질 82
 - **배포**: 빌드 시 dist 에 최적화본만 포함됨
 
+### 방명록 (Cloudflare D1)
+
+방명록은 **Cloudflare D1** + **Pages Functions**를 사용합니다. DB/API 모두 Cloudflare에서 무료로 사용할 수 있습니다.
+
+- **설정 방법**: [docs/CLOUDFLARE-D1-SETUP.md](docs/CLOUDFLARE-D1-SETUP.md) 참고 (D1 생성 → 스키마 실행 → Pages에 D1 바인딩 → 배포)
+- **기능**: 축하 메시지 등록(작성자 10자, 비밀번호, 메시지 200자), 최신 5개 + 더보기(10개씩), 비밀번호 확인 후 soft delete
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh

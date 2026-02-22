@@ -1,0 +1,12 @@
+# Cloudflare Pages + D1 (방명록)
+# 배포: Cloudflare 대시보드에서 Pages 프로젝트 연결 후, D1 바인딩만 추가하면 됨.
+# database_id 는 D1 데이터베이스 생성 후 아래에 넣고, 로컬에서 wrangler d1 execute 로 스키마 실행 시 사용.
+
+name = "jaehun-wedding-invitation"
+pages_build_output_dir = "dist"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "wedding-guestbook-db"
+database_id = "c253cff2-2498-41e7-973b-d947b59bd096"   # D1 생성 후 여기에 Database ID 입력 (로컬/스키마 실행용)
