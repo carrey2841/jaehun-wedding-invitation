@@ -68,7 +68,7 @@ function FoldSection({
         aria-expanded={open}
       >
         <span>{title}</span>
-        <span className={styles.foldIcon}>{open ? '▼' : '▶'}</span>
+        <span className={`${styles.foldIcon} ${open ? styles.foldIconOpen : ''}`} aria-hidden />
       </button>
       {open && (
         <div className={styles.foldBody}>

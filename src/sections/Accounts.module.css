@@ -21,11 +21,10 @@
 }
 
 .fold {
-  border: 1px solid var(--color-gray-200);
-  border-radius: 8px;
   margin-bottom: 0.75rem;
   overflow: hidden;
   background: var(--color-brown-100);
+  border-radius: 8px;
 }
 
 .foldHead {
@@ -50,29 +49,36 @@
   background: var(--color-brown-200);
 }
 
+/* 꺾쇠: 제목과 동일 크기(1em), border로 그려서 깔끔한 각도 */
 .foldIcon {
-  font-size: 0.7rem;
-  color: var(--color-gray-500);
+  display: inline-block;
+  width: 0.45em;
+  height: 0.45em;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(-45deg);
+  color: var(--color-gray-800);
+  font-size: 1rem; /* foldHead와 동일 1rem */
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+  vertical-align: middle;
+}
+.foldIconOpen {
+  transform: rotate(45deg);
 }
 
 .foldBody {
   padding: 0 1rem 1rem;
-  border-top: 1px solid var(--color-gray-200);
   text-align: left;
 }
 
 .accountRow {
   padding: 0.5rem 0;
-  border-bottom: 1px solid var(--color-gray-200);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.25rem;
   text-align: left;
-}
-
-.accountRow:last-child {
-  border-bottom: none;
 }
 
 .relation {
@@ -91,7 +97,7 @@
 }
 
 .accountLine {
-  font-size: 0.72rem;
+  font-size: 0.9rem;
   color: var(--color-gray-900);
   margin: 0;
   flex: 1 1 auto;
