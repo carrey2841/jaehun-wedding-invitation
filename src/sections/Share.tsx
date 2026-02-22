@@ -10,6 +10,7 @@ type KakaoSharePayload =
       objectType: 'feed'
       content: { title: string; description: string; imageUrl: string; link: { mobileWebUrl: string; webUrl: string } }
       buttonTitle?: string
+      buttons?: Array<{ title: string; link: { mobileWebUrl: string; webUrl: string } }>
     }
 
 declare global {
@@ -74,15 +75,16 @@ export function Share() {
 
     if (sdkReady && window.Kakao?.Share) {
       try {
+        const link = { mobileWebUrl: url, webUrl: url }
         window.Kakao.Share.sendDefault({
           objectType: 'feed',
           content: {
             title,
             description,
             imageUrl: coverImageUrl,
-            link: { mobileWebUrl: url, webUrl: url },
+            link,
           },
-          buttonTitle: '모바일 청첩장 보기',
+          buttons: [{ title: '모바일 청첩장 보기', link }],
         })
         return
       } catch {
