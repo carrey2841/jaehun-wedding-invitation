@@ -4,12 +4,19 @@ import styles from './Share.module.css'
 
 const KAKAO_SDK_URL = 'https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js'
 
+type KakaoSharePayload =
+  | { objectType: 'text'; text: string; link: { mobileWebUrl: string; webUrl: string } }
+  | {
+      objectType: 'feed'
+      content: { title: string; description: string; imageUrl: string; link: { mobileWebUrl: string; webUrl: string } }
+    }
+
 declare global {
   interface Window {
     Kakao?: {
       init: (key: string) => void
       isInitialized: () => boolean
-      Share?: { sendDefault: (o: { objectType: string; text: string; link: { mobileWebUrl: string; webUrl: string } }) => void }
+      Share?: { sendDefault: (o: KakaoSharePayload) => void }
     }
   }
 }
@@ -56,14 +63,24 @@ export function Share() {
   }, [kakaoKey])
 
   const shareKakao = useCallback(async () => {
-    const title = '재훈❤️영주 결혼합니다. 함께해 주세요.'
+    const title = '재훈❤️영주 결혼합니다.'
+    const description = '함께해 주세요.'
+    const siteOrigin =
+      (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SITE_URL
+        ? String(import.meta.env.VITE_SITE_URL).replace(/\/$/, '')
+        : null) ?? (typeof window !== 'undefined' ? window.location.origin : '')
+    const coverImageUrl = `${siteOrigin}/cover.jpeg`
 
     if (sdkReady && window.Kakao?.Share) {
       try {
         window.Kakao.Share.sendDefault({
-          objectType: 'text',
-          text: title,
-          link: { mobileWebUrl: url, webUrl: url },
+          objectType: 'feed',
+          content: {
+            title,
+            description,
+            imageUrl: coverImageUrl,
+            link: { mobileWebUrl: url, webUrl: url },
+          },
         })
         return
       } catch {
