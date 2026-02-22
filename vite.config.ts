@@ -1,12 +1,23 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import { join } from 'path'
 import { createReadStream, existsSync } from 'fs'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '')
+  const siteUrl = (env.VITE_SITE_URL ?? '').replace(/\/$/, '')
+  const ogImageUrl = siteUrl ? `${siteUrl}/cover.jpeg` : '/cover.jpeg'
+
+  return {
   plugins: [
     react(),
+    {
+      name: 'inject-og-image-url',
+      transformIndexHtml(html) {
+        return html.replace(/__OG_IMAGE_URL__/g, ogImageUrl)
+      },
+    },
     {
       name: 'serve-optimized-images',
       configureServer(server) {
@@ -36,4 +47,5 @@ export default defineConfig({
   server: {
     host: true, // 같은 Wi-Fi의 휴대폰에서 http://<맥IP>:5173 으로 접속 가능
   },
+  }
 })
