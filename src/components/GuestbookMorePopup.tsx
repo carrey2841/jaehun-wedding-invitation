@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { fetchGuestbookList, PAGE_SIZE } from '../lib/guestbook'
+import { fetchGuestbookList, formatGuestbookDateKST, PAGE_SIZE } from '../lib/guestbook'
 import type { GuestbookRow } from '../lib/guestbook'
 import { GuestbookDeletePopup } from './GuestbookDeletePopup'
 import styles from './GuestbookMorePopup.module.css'
@@ -7,15 +7,6 @@ import styles from './GuestbookMorePopup.module.css'
 interface GuestbookMorePopupProps {
   onClose: () => void
   onDeleted: () => void
-}
-
-function formatDate(iso: string) {
-  try {
-    const d = new Date(iso)
-    return d.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })
-  } catch {
-    return iso
-  }
 }
 
 function GuestbookItem({
@@ -39,7 +30,7 @@ function GuestbookItem({
         </button>
       </div>
       <p className={styles.itemMessage}>{item.message}</p>
-      <div className={styles.itemDate}>{formatDate(item.created_at)}</div>
+      <div className={styles.itemDate}>{formatGuestbookDateKST(item.created_at, { withYear: true })}</div>
     </div>
   )
 }

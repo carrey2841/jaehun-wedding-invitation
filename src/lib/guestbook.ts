@@ -3,6 +3,30 @@
  * GET/POST/DELETE /api/guestbook
  */
 
+const KST = 'Asia/Seoul'
+
+/** API에서 내려오는 created_at(UTC)을 KST 기준으로 포맷 */
+export function formatGuestbookDateKST(
+  iso: string,
+  options: { withYear?: boolean } = {}
+): string {
+  try {
+    let s = iso.trim()
+    if (!/Z|[+-]\d{2}:?\d{2}$/.test(s)) s = s.replace(' ', 'T') + 'Z'
+    const d = new Date(s)
+    return d.toLocaleDateString('ko-KR', {
+      timeZone: KST,
+      year: options.withYear ? 'numeric' : undefined,
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    })
+  } catch {
+    return iso
+  }
+}
+
 export type GuestbookRow = {
   id: string
   author: string

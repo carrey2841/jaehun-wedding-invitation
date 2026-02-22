@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import { Section } from '../components/Section'
-import { fetchGuestbookList } from '../lib/guestbook'
+import { fetchGuestbookList, formatGuestbookDateKST } from '../lib/guestbook'
 import type { GuestbookRow } from '../lib/guestbook'
 import { GuestbookFormPopup } from '../components/GuestbookFormPopup'
 import { GuestbookMorePopup } from '../components/GuestbookMorePopup'
@@ -9,15 +9,6 @@ import { GuestbookDeletePopup } from '../components/GuestbookDeletePopup'
 import styles from './Guestbook.module.css'
 
 const PREVIEW_COUNT = 5
-
-function formatDate(iso: string) {
-  try {
-    const d = new Date(iso)
-    return d.toLocaleDateString('ko-KR', { month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })
-  } catch {
-    return iso
-  }
-}
 
 function GuestbookItem({
   item,
@@ -40,7 +31,7 @@ function GuestbookItem({
         </button>
       </div>
       <p className={styles.itemMessage}>{item.message}</p>
-      <div className={styles.itemDate}>{formatDate(item.created_at)}</div>
+      <div className={styles.itemDate}>{formatGuestbookDateKST(item.created_at)}</div>
     </div>
   )
 }

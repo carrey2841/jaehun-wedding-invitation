@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { Section } from '../components/Section'
+import { WeddingCountdown } from '../components/WeddingCountdown'
 import { useInvitationStore } from '../stores/invitationStore'
 import styles from './CalendarSection.module.css'
 
@@ -79,7 +80,7 @@ function MonthCalendar({ year, month, highlightDay }: { year: number; month: num
 
 export function CalendarSection() {
   const { venue } = useInvitationStore()
-  const { dateTimeLabel, date } = venue
+  const { dateTimeLabel, date, time } = venue
 
   const { year, month, day } = useMemo(() => {
     if (date) {
@@ -92,12 +93,16 @@ export function CalendarSection() {
   return (
     <Section id="calendar" className={styles.calendar}>
       <MonthCalendar year={year} month={month} highlightDay={day} />
-      {dateTimeLabel && (
-        <>
-          <p className={styles.dateTime}>{dateTimeLabel}</p>
-          <p className={styles.venueName}>라비니움 1층 리츄얼홀</p>
-        </>
+        {dateTimeLabel && (
+            <>
+                <p className={styles.dateTime}>{dateTimeLabel}</p>
+                <p className={styles.venueName}>라비니움 1층 리츄얼홀</p>
+            </>
+        )}
+      {date && (
+        <WeddingCountdown date={date} time={time ?? '17:00'} />
       )}
+
     </Section>
   )
 }
