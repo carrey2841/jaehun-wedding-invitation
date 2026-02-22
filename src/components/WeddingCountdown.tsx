@@ -28,19 +28,19 @@ function getMessage(
   const { days, hours, minutes, seconds } = remaining
   const hasRemaining = days > 0 || hours > 0 || minutes > 0 || seconds > 0
   if (hasRemaining) {
-    return `재훈❤영주 결혼식이 ${days}일 남았습니다`
+    return `재훈🤍영주 결혼식이 ${days}일 남았습니다`
   }
   const now = new Date()
   const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()
   const weddingDayStart = new Date(target.getFullYear(), target.getMonth(), target.getDate()).getTime()
   if (todayStart === weddingDayStart) {
-    return '재훈❤영주 결혼식 날입니다.'
+    return '재훈🤍영주 결혼식 날입니다.'
   }
   if (todayStart > weddingDayStart) {
     const daysPassed = Math.floor((todayStart - weddingDayStart) / 86400000)
-    return `재훈❤영주 결혼식이 ${daysPassed}일 지났습니다.`
+    return `재훈🤍영주 결혼식이 ${daysPassed}일 지났습니다.`
   }
-  return `재훈❤영주 결혼식이 ${days}일 남았습니다`
+  return `재훈🤍영주 결혼식이 ${days}일 남았습니다`
 }
 
 interface WeddingCountdownProps {
