@@ -8,7 +8,7 @@
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--color-brown-600);
-  margin: 0 0 0.5rem;
+  margin: 5rem 0 0.5rem;
   text-align: center;
 }
 
@@ -29,7 +29,7 @@
   font-size: 1rem;
   color: var(--color-gray-800);
   background: var(--color-brown-100);
-  border: 1px solid var(--color-brown-400);
+  border: none;
   border-radius: 8px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
