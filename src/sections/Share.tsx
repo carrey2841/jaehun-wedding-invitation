@@ -9,6 +9,7 @@ type KakaoSharePayload =
   | {
       objectType: 'feed'
       content: { title: string; description: string; imageUrl: string; link: { mobileWebUrl: string; webUrl: string } }
+      buttonTitle?: string
     }
 
 declare global {
@@ -64,7 +65,7 @@ export function Share() {
 
   const shareKakao = useCallback(async () => {
     const title = '재훈❤️영주 결혼합니다.'
-    const description = '함께해 주세요.'
+    const description = '드디어 저희 결혼합니다❤️\n2026년 5월 16일, 함께 축하해주세요!'
     const siteOrigin =
       (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SITE_URL
         ? String(import.meta.env.VITE_SITE_URL).replace(/\/$/, '')
@@ -81,6 +82,7 @@ export function Share() {
             imageUrl: coverImageUrl,
             link: { mobileWebUrl: url, webUrl: url },
           },
+          buttonTitle: '모바일 청첩장 보기',
         })
         return
       } catch {
