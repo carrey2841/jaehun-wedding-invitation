@@ -21,6 +21,7 @@
     height: auto;
     display: block;
     vertical-align: top;
+    object-fit: contain;
 }
 
 .heroPlaceholder {
