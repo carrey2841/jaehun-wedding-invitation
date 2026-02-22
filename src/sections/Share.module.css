@@ -1,0 +1,41 @@
+.share {
+  background: var(--color-brown-50);
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-brown-600);
+  margin: 5rem 0 0.5rem;
+  text-align: center;
+}
+
+.hint {
+  font-size: 0.9rem;
+  color: var(--color-gray-600);
+  margin: 0 0 1rem;
+  text-align: center;
+}
+
+.shareBtn {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+  padding: 0.65rem 1rem;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--color-gray-800);
+  background: var(--color-brown-100);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.shareBtn:hover {
+  background: var(--color-brown-200);
+}
