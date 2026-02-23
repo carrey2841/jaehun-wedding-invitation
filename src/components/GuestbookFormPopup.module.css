@@ -104,13 +104,13 @@
 }
 
 .cancelBtn {
-  color: var(--color-gray-700);
-  background: var(--color-gray-200);
-  border-color: var(--color-gray-300);
+  color: #333;
+  background: #e8dfd4;
+  border-color: #d4c4b0;
 }
 
 .cancelBtn:hover {
-  background: var(--color-gray-300);
+  background: #d4c4b0;
 }
 
 .formError {

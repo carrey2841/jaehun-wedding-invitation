@@ -17,13 +17,13 @@
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 0.5rem;
-  background: var(--color-gray-200);
+  background: #e8dfd4;
   text-decoration: none;
 }
 
 .mapHint {
   font-size: 0.8125rem;
-  color: var(--color-gray-500);
+  color: #6b5f52;
   text-align: center;
   margin: 2rem 0 3rem;
 }
@@ -57,7 +57,7 @@
   padding: 0.35rem;
   border: none;
   background: transparent;
-  color: var(--color-gray-500);
+  color: #6b5f52;
   cursor: pointer;
   border-radius: 6px;
   display: flex;
@@ -67,8 +67,8 @@
 }
 
 .copyBtn:hover {
-  color: var(--color-gray-900);
-  background: var(--color-gray-200);
+  color: #333;
+  background: #e8dfd4;
 }
 
 .copyBtn svg {
@@ -78,7 +78,10 @@
 
 .copiedLabel {
   font-size: 0.75rem;
-  color: var(--color-gray-900);
+  color: #333;
+  background: #e8dfd4;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
 }
 
 .appButtons {
