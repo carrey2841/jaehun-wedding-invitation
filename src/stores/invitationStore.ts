@@ -80,8 +80,8 @@ const initialState: InvitationData = {
       {
         relation: '신랑 아버지',
         accountHolder: '이관섭',
-        bankName: 'OO은행',
-        accountNumber: '0000-0000-00000',
+        bankName: '국민은행',
+        accountNumber: '579901-01-036550',
       },
     ],
     bride: [
