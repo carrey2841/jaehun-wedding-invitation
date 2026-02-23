@@ -97,6 +97,8 @@
   width: 85%;
   height: 85%;
   bottom: 1px;
+  left: 50%;
+  transform: translate(-50%, 0) translateX(-0.4px); /* 하트만 미세 조정: 마지막 숫자 (음수=왼쪽) */
   color: #92846f;
   pointer-events: none;
   filter: drop-shadow(0 0 0.3px currentColor);
