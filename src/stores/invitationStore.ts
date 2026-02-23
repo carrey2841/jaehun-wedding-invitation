@@ -83,12 +83,6 @@ const initialState: InvitationData = {
         bankName: 'OO은행',
         accountNumber: '0000-0000-00000',
       },
-      {
-        relation: '신랑 어머니',
-        accountHolder: '이미라',
-        bankName: 'OO은행',
-        accountNumber: '0000-0000-00000',
-      },
     ],
     bride: [
       {
@@ -96,12 +90,6 @@ const initialState: InvitationData = {
         accountHolder: '이영주',
         bankName: '토스뱅크',
         accountNumber: '1001-7608-8529',
-      },
-      {
-        relation: '신부 아버지',
-        accountHolder: '이승복',
-        bankName: '국민은행',
-        accountNumber: '080240281889',
       },
       {
         relation: '신부 어머니',
