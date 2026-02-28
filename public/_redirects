@@ -1,5 +1,3 @@
-# /parent(/) 요청 시 OG용 parent.html로 (Cloudflare이 /parent → /parent/ 308 할 수 있으므로 둘 다 처리)
-/parent    /parent.html   200
-/parent/   /parent.html   200
+# /parent, /parent/ 는 functions/parent.ts 가 parent.html 내용을 반환 (200, URL 유지)
 # SPA: 나머지 경로는 index.html로
 /*         /index.html    200
