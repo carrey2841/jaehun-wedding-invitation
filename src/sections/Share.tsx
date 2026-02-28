@@ -79,8 +79,9 @@ export function Share() {
         const fromQuery = new URLSearchParams(window.location.search).get('cover') === 'parent'
         return fromPath || fromQuery
       })()
-    const coverFileName = isParentVariant ? 'cover-parent-feed.jpeg' : 'cover-feed.jpeg'
-    const coverImageUrl = `${siteOrigin}/${coverFileName}`
+    // 기본: cover.jpeg. /parent 경로에서는 카카오 피드에만 cover-parent-feed.jpeg 사용.
+    const feedImageName = isParentVariant ? 'cover-parent-feed.jpeg' : 'cover.jpeg'
+    const coverImageUrl = `${siteOrigin}/${feedImageName}`
 
     if (sdkReady && window.Kakao?.Share) {
       try {

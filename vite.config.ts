@@ -1,21 +1,41 @@
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import { join } from 'path'
-import { createReadStream, existsSync } from 'fs'
+import { createReadStream, existsSync, readFileSync, writeFileSync } from 'fs'
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   const siteUrl = (env.VITE_SITE_URL ?? '').replace(/\/$/, '')
+  // 카카오/메신저 크롤러는 절대 URL만 인식함. 배포 시 VITE_SITE_URL 필수.
   const ogImageUrl = siteUrl ? `${siteUrl}/cover.jpeg` : '/cover.jpeg'
+  const ogUrl = siteUrl // 빌드 시 없으면 og:url은 placeholder 유지
+  const parentOgImageUrl = siteUrl ? `${siteUrl}/cover-parent-feed.jpeg` : '/cover-parent-feed.jpeg'
+  const parentOgUrl = siteUrl ? `${siteUrl}/parent` : '/parent'
+
+  let buildOutDir = 'dist'
 
   return {
   plugins: [
     react(),
     {
-      name: 'inject-og-image-url',
+      name: 'inject-og-urls',
+      configResolved(config) {
+        buildOutDir = config.build.outDir
+      },
       transformIndexHtml(html) {
-        return html.replace(/__OG_IMAGE_URL__/g, ogImageUrl)
+        let out = html.replace(/__OG_IMAGE_URL__/g, ogImageUrl)
+        if (ogUrl) out = out.replace(/__OG_URL__/g, ogUrl)
+        return out
+      },
+      closeBundle() {
+        const indexPath = join(process.cwd(), buildOutDir, 'index.html')
+        if (!existsSync(indexPath)) return
+        let parentHtml = readFileSync(indexPath, 'utf-8')
+        parentHtml = parentHtml.split(ogImageUrl).join(parentOgImageUrl)
+        if (ogUrl) parentHtml = parentHtml.split(ogUrl).join(parentOgUrl)
+        parentHtml = parentHtml.split('__OG_URL__').join(parentOgUrl)
+        writeFileSync(join(process.cwd(), buildOutDir, 'parent.html'), parentHtml, 'utf-8')
       },
     },
     {

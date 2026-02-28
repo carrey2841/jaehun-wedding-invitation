@@ -1,0 +1,4 @@
+# /parent 요청 시 OG용 parent.html로 (og:image=cover-parent-feed.jpeg)
+/parent   /parent.html   200
+# SPA: 나머지 경로는 index.html로
+/*        /index.html    200

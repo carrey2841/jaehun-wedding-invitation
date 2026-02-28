@@ -38,12 +38,19 @@ pnpm run optimize:gallery -- --replace  # gallery 만 원본 백업 후 최적�
 
 제품 링크 관리에 웹 도메인이 없으면 피드는 보여도 **버튼이 아예 노출되지 않습니다.** 링크 주소의 도메인은 반드시 여기 등록된 값과 같아야 합니다.
 
-**부모님용 공유 이미지:** 아래 둘 중 편한 방식으로 사용하면, 카카오톡 공유하기 버튼으로 보낼 때 **다른 이미지**가 피드에 노출됩니다. `public/cover-parent.jpeg`에 부모님용 사진을 넣어 두세요.
-- **Path:** `https://도메인/parent` (추천)
-- **Query:** `https://도메인/?cover=parent`
-(이미지 URL이 달라서 카카오 캐시와도 별도로 동작합니다.)
+**커버 이미지 3종과 OG/카카오 공유 규칙**
 
-**카카오 피드 이미지 규격:** 피드는 이미지를 **정사각형(1:1)** 으로 보여줍니다. **800×800** 정사각형 이미지를 직접 준비해서 `public/cover-feed.jpeg`, 부모님용은 `public/cover-parent-feed.jpeg` 로 넣어 두면 공유 시 그대로 사용됩니다. (자동 크롭 없음)
+| 파일 | 용도 |
+|------|------|
+| `cover.jpeg` | 기본 커버 이미지. 카카오톡 공유 시(기본 경로)에도 이 이미지 사용. OG도 `/` 공유 시 이 이미지. |
+| `cover-parent.jpeg` | `/parent` 로 들어왔을 때 Cover 섹션에 보이는 이미지. |
+| `cover-parent-feed.jpeg` | `/parent` 페이지에서 카카오톡 공유 시 피드 이미지. 링크 공유 시 OG 미리보기에도 이 이미지. |
+
+- **OG:** `/` 공유 시 → `og:image` = `cover.jpeg`. `/parent` 공유 시 → `og:image` = `cover-parent-feed.jpeg` (빌드 시 `parent.html` 생성 + `_redirects`로 처리).
+- **카카오 피드:** 기본 경로 공유 → `cover.jpeg`. `/parent`(또는 `?cover=parent`)에서 공유 → `cover-parent-feed.jpeg`.
+- 배포 시 **`VITE_SITE_URL`** 을 반드시 설정해야 OG/피드 이미지가 절대 URL로 들어가서 미리보기가 나옵니다.
+
+**부모님용 경로:** `https://도메인/parent` (추천) 또는 `https://도메인/?cover=parent`. `public/cover-parent.jpeg`(Cover 표시용), `public/cover-parent-feed.jpeg`(공유 미리보기용)를 준비하세요.
 
 Currently, two official plugins are available:
 
