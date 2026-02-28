@@ -37,9 +37,13 @@ export default defineConfig(({ mode }) => {
           } else if (url === '/cover-parent.jpeg' || url === '/cover-parent.jpg' || url === '/cover-parent.png') {
             optimizedPath = join(cwd, 'public', 'cover-parent-optimized.jpg')
           } else if (url === '/cover-feed.jpeg' || url === '/cover-feed.jpg') {
-            optimizedPath = join(cwd, 'public', 'cover-feed-optimized.jpg')
+            if (existsSync(join(cwd, 'public', 'cover-feed.jpeg'))) optimizedPath = join(cwd, 'public', 'cover-feed.jpeg')
+            else if (existsSync(join(cwd, 'public', 'cover-feed.jpg'))) optimizedPath = join(cwd, 'public', 'cover-feed.jpg')
+            else optimizedPath = join(cwd, 'public', 'cover-feed-optimized.jpg')
           } else if (url === '/cover-parent-feed.jpeg' || url === '/cover-parent-feed.jpg') {
-            optimizedPath = join(cwd, 'public', 'cover-parent-feed-optimized.jpg')
+            if (existsSync(join(cwd, 'public', 'cover-parent-feed.jpeg'))) optimizedPath = join(cwd, 'public', 'cover-parent-feed.jpeg')
+            else if (existsSync(join(cwd, 'public', 'cover-parent-feed.jpg'))) optimizedPath = join(cwd, 'public', 'cover-parent-feed.jpg')
+            else optimizedPath = join(cwd, 'public', 'cover-parent-feed-optimized.jpg')
           } else if (url === '/invitation.jpg' || url === '/invitation.png') {
             optimizedPath = join(cwd, 'public', 'invitation-optimized.jpg')
           }

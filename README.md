@@ -43,7 +43,7 @@ pnpm run optimize:gallery -- --replace  # gallery 만 원본 백업 후 최적�
 - **Query:** `https://도메인/?cover=parent`
 (이미지 URL이 달라서 카카오 캐시와도 별도로 동작합니다.)
 
-**카카오 피드 이미지 규격:** 피드는 이미지를 **정사각형(1:1)** 으로 잘라서 보여줍니다. 그래서 세로/가로로 긴 사진은 잘릴 수 있어요. 이 프로젝트는 `pnpm run optimize:gallery` 시 **피드 전용 800×800 정사각형**을 따로 만들어서 (`cover-feed.jpeg`, `cover-parent-feed.jpeg`) 공유 시 그걸 쓰므로, 잘림 없이 나오도록 되어 있습니다.
+**카카오 피드 이미지 규격:** 피드는 이미지를 **정사각형(1:1)** 으로 보여줍니다. **800×800** 정사각형 이미지를 직접 준비해서 `public/cover-feed.jpeg`, 부모님용은 `public/cover-parent-feed.jpeg` 로 넣어 두면 공유 시 그대로 사용됩니다. (자동 크롭 없음)
 
 Currently, two official plugins are available:
 
