@@ -65,7 +65,7 @@ async function main() {
     // 피드용 800x800은 직접 public/cover-feed.jpeg 로 올리면 됨 (자동 크롭 안 함)
   }
 
-  // 1-2) cover-parent.* → cover-parent-optimized.jpg (부모님용 공유 이미지)
+  // 1-2) cover-parent.* → cover-parent-optimized.jpg (부모님용 Cover 섹션)
   const coverParentFile = publicFiles.find((f) => /^cover-parent\.(jpeg|jpg|png|webp|gif)$/i.test(f))
   if (coverParentFile) {
     const out = await optimizeOne(
@@ -76,7 +76,19 @@ async function main() {
     )
     totalBefore += out.before
     totalAfter += out.after
-    // 피드용 800x800은 직접 public/cover-parent-feed.jpeg 로 올리면 됨 (자동 크롭 안 함)
+  }
+
+  // 1-3) cover-parent-og.* → cover-parent-og-optimized.jpg (부모님용 카카오 피드/OG)
+  const coverParentOgFile = publicFiles.find((f) => /^cover-parent-og\.(jpeg|jpg|png|webp|gif)$/i.test(f))
+  if (coverParentOgFile) {
+    const out = await optimizeOne(
+      sharp,
+      join(publicDir, coverParentOgFile),
+      join(publicDir, 'cover-parent-og-optimized.jpg'),
+      `cover-parent-og (${coverParentOgFile})`
+    )
+    totalBefore += out.before
+    totalAfter += out.after
   }
 
   // 2) invitation.png / invitation.jpg 등 → invitation-optimized.jpg
@@ -136,12 +148,12 @@ async function main() {
       console.log('완료. 원본은 public/gallery-backup 에 있습니다.')
     }
   }
-  if (!replace && (galleryFiles.length > 0 || coverFile || coverParentFile || invitationFile)) {
-    console.log('\n최적화본: public/gallery-optimized, public/cover-optimized.jpg, public/cover-parent-optimized.jpg, public/invitation-optimized.jpg')
+  if (!replace && (galleryFiles.length > 0 || coverFile || coverParentFile || coverParentOgFile || invitationFile)) {
+    console.log('\n최적화본: public/gallery-optimized, public/cover-optimized.jpg, public/cover-parent-optimized.jpg, public/cover-parent-og-optimized.jpg, public/invitation-optimized.jpg')
     if (galleryFiles.length > 0) console.log('갤러리만 원본 교체: pnpm run optimize:gallery -- --replace')
   }
-  if (totalBefore === 0 && !coverFile && !coverParentFile && !invitationFile) {
-    console.log('최적화할 이미지가 없습니다. (public/cover.*, public/cover-parent.*, public/invitation.*, public/gallery/)')
+  if (totalBefore === 0 && !coverFile && !coverParentFile && !coverParentOgFile && !invitationFile) {
+    console.log('최적화할 이미지가 없습니다. (public/cover.*, public/cover-parent.*, public/cover-parent-og.*, public/invitation.*, public/gallery/)')
   }
 }
 

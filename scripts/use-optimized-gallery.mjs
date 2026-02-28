@@ -49,11 +49,11 @@ if (existsSync(coverFeedOpt)) {
   unlinkSync(coverFeedOpt)
   console.log('배포용 피드 커버: cover-feed-optimized.jpg → cover-feed.jpeg')
 }
-const coverParentFeedOpt = join(distDir, 'cover-parent-feed-optimized.jpg')
-if (existsSync(coverParentFeedOpt)) {
-  copyFileSync(coverParentFeedOpt, join(distDir, 'cover-parent-feed.jpeg'))
-  unlinkSync(coverParentFeedOpt)
-  console.log('배포용 피드 부모님 커버: cover-parent-feed-optimized.jpg → cover-parent-feed.jpeg')
+const coverParentOgOpt = join(distDir, 'cover-parent-og-optimized.jpg')
+if (existsSync(coverParentOgOpt)) {
+  copyFileSync(coverParentOgOpt, join(distDir, 'cover-parent-og.jpeg'))
+  unlinkSync(coverParentOgOpt)
+  console.log('배포용 피드 부모님 커버: cover-parent-og-optimized.jpg → cover-parent-og.jpeg')
 }
 
 // 3) invitation → invitation.jpg 로 서빙

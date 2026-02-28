@@ -6,14 +6,19 @@ import { createReadStream, existsSync, readFileSync, writeFileSync } from 'fs'
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
+  // 미리보기 이미지 캐시: 값 없으면 빌드 시각으로 매 빌드 새 URL → 캐시 자동 갱신. 고정하려면 VITE_OG_IMAGE_VERSION=1 등 설정.
+  const rawVersion = (env.VITE_OG_IMAGE_VERSION ?? '').trim()
+  const imageVersion = rawVersion || String(Date.now())
+  if (!rawVersion) {
+    env.VITE_OG_IMAGE_VERSION = imageVersion
+    process.env.VITE_OG_IMAGE_VERSION = imageVersion
+  }
+  const versionQuery = `?v=${imageVersion}`
   const siteUrl = (env.VITE_SITE_URL ?? '').replace(/\/$/, '')
-  // 미리보기 이미지 캐시 강제 갱신: VITE_OG_IMAGE_VERSION=2 등 설정 후 재빌드하면 ?v=2 붙음
-  const imageVersion = (env.VITE_OG_IMAGE_VERSION ?? '').trim()
-  const versionQuery = imageVersion ? `?v=${imageVersion}` : ''
   // 카카오/메신저 크롤러는 절대 URL만 인식함. 배포 시 VITE_SITE_URL 필수.
   const ogImageUrl = (siteUrl ? `${siteUrl}/cover.jpeg` : '/cover.jpeg') + versionQuery
   const ogUrl = siteUrl // 빌드 시 없으면 og:url은 placeholder 유지
-  const parentOgImageUrl = (siteUrl ? `${siteUrl}/cover-parent-feed.jpeg` : '/cover-parent-feed.jpeg') + versionQuery
+  const parentOgImageUrl = (siteUrl ? `${siteUrl}/cover-parent-og.jpeg` : '/cover-parent-og.jpeg') + versionQuery
   const parentOgUrl = siteUrl ? `${siteUrl}/parent-v2` : '/parent-v2'
 
   let buildOutDir = 'dist'
@@ -63,10 +68,10 @@ export default defineConfig(({ mode }) => {
             if (existsSync(join(cwd, 'public', 'cover-feed.jpeg'))) optimizedPath = join(cwd, 'public', 'cover-feed.jpeg')
             else if (existsSync(join(cwd, 'public', 'cover-feed.jpg'))) optimizedPath = join(cwd, 'public', 'cover-feed.jpg')
             else optimizedPath = join(cwd, 'public', 'cover-feed-optimized.jpg')
-          } else if (url === '/cover-parent-feed.jpeg' || url === '/cover-parent-feed.jpg') {
-            if (existsSync(join(cwd, 'public', 'cover-parent-feed.jpeg'))) optimizedPath = join(cwd, 'public', 'cover-parent-feed.jpeg')
-            else if (existsSync(join(cwd, 'public', 'cover-parent-feed.jpg'))) optimizedPath = join(cwd, 'public', 'cover-parent-feed.jpg')
-            else optimizedPath = join(cwd, 'public', 'cover-parent-feed-optimized.jpg')
+          } else if (url === '/cover-parent-og.jpeg' || url === '/cover-parent-og.jpg') {
+            if (existsSync(join(cwd, 'public', 'cover-parent-og.jpeg'))) optimizedPath = join(cwd, 'public', 'cover-parent-og.jpeg')
+            else if (existsSync(join(cwd, 'public', 'cover-parent-og.jpg'))) optimizedPath = join(cwd, 'public', 'cover-parent-og.jpg')
+            else optimizedPath = join(cwd, 'public', 'cover-parent-og-optimized.jpg')
           } else if (url === '/invitation.jpg' || url === '/invitation.png') {
             optimizedPath = join(cwd, 'public', 'invitation-optimized.jpg')
           }

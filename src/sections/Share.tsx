@@ -79,8 +79,8 @@ export function Share() {
         const fromQuery = new URLSearchParams(window.location.search).get('cover') === 'parent'
         return fromPath || fromQuery
       })()
-    // 기본: cover.jpeg. /parent-v2 경로에서는 카카오 피드에만 cover-parent-feed.jpeg 사용.
-    const feedImageName = isParentVariant ? 'cover-parent-feed.jpeg' : 'cover.jpeg'
+    // 기본: cover.jpeg. /parent-v2 경로에서는 카카오 피드에만 cover-parent-og.jpeg 사용.
+    const feedImageName = isParentVariant ? 'cover-parent-og.jpeg' : 'cover.jpeg'
     const imageVersion = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_OG_IMAGE_VERSION
       ? String(import.meta.env.VITE_OG_IMAGE_VERSION).trim()
       : '') || ''
@@ -89,7 +89,10 @@ export function Share() {
 
     if (sdkReady && window.Kakao?.Share) {
       try {
-        const link = { mobileWebUrl: url, webUrl: url }
+        // 카카오가 URL 기준으로 캐시해서, 같은 주소면 예전 미리보기가 계속 나옴. 링크에 ?_=시각 붙여서 매번 새 URL로 보내면 캐시 없이 새로 크롤링함.
+        const shareUrl =
+          url + (url.includes('?') ? '&' : '?') + '_=' + Date.now()
+        const link = { mobileWebUrl: shareUrl, webUrl: shareUrl }
         window.Kakao.Share.sendDefault({
           objectType: 'feed',
           content: {
