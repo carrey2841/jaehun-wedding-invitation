@@ -75,11 +75,11 @@ export function Share() {
       typeof window !== 'undefined' &&
       (() => {
         const seg = window.location.pathname.replace(/^\/|\/$/g, '')
-        const fromPath = seg === 'parent'
+        const fromPath = seg === 'parent-v2'
         const fromQuery = new URLSearchParams(window.location.search).get('cover') === 'parent'
         return fromPath || fromQuery
       })()
-    // 기본: cover.jpeg. /parent 경로에서는 카카오 피드에만 cover-parent-feed.jpeg 사용.
+    // 기본: cover.jpeg. /parent-v2 경로에서는 카카오 피드에만 cover-parent-feed.jpeg 사용.
     const feedImageName = isParentVariant ? 'cover-parent-feed.jpeg' : 'cover.jpeg'
     const imageVersion = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_OG_IMAGE_VERSION
       ? String(import.meta.env.VITE_OG_IMAGE_VERSION).trim()

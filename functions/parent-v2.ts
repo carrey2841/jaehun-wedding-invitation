@@ -1,5 +1,5 @@
 /**
- * /parent, /parent/ 요청 시 parent.html 내용을 그대로 반환 (OG용, URL 변경 없음).
+ * /parent-v2, /parent-v2/ 요청 시 parent.html 내용을 그대로 반환 (OG용, URL 변경 없음).
  * _redirects 200 rewrite가 Cloudflare Pages에서 동작하지 않아 Function으로 처리.
  */
 interface Env {

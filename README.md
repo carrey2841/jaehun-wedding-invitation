@@ -43,15 +43,15 @@ pnpm run optimize:gallery -- --replace  # gallery 만 원본 백업 후 최적�
 | 파일 | 용도 |
 |------|------|
 | `cover.jpeg` | 기본 커버 이미지. 카카오톡 공유 시(기본 경로)에도 이 이미지 사용. OG도 `/` 공유 시 이 이미지. |
-| `cover-parent.jpeg` | `/parent` 로 들어왔을 때 Cover 섹션에 보이는 이미지. |
-| `cover-parent-feed.jpeg` | `/parent` 페이지에서 카카오톡 공유 시 피드 이미지. 링크 공유 시 OG 미리보기에도 이 이미지. |
+| `cover-parent.jpeg` | `/parent-v2` 로 들어왔을 때 Cover 섹션에 보이는 이미지. |
+| `cover-parent-feed.jpeg` | `/parent-v2` 페이지에서 카카오톡 공유 시 피드 이미지. 링크 공유 시 OG 미리보기에도 이 이미지. |
 
-- **OG:** `/` 공유 시 → `og:image` = `cover.jpeg`. `/parent` 공유 시 → `og:image` = `cover-parent-feed.jpeg` (빌드 시 `parent.html` 생성 + `_redirects`로 처리).
-- **카카오 피드:** 기본 경로 공유 → `cover.jpeg`. `/parent`(또는 `?cover=parent`)에서 공유 → `cover-parent-feed.jpeg`.
+- **OG:** `/` 공유 시 → `og:image` = `cover.jpeg`. `/parent-v2` 공유 시 → `og:image` = `cover-parent-feed.jpeg` (빌드 시 `parent.html` 생성 + Pages Function으로 처리).
+- **카카오 피드:** 기본 경로 공유 → `cover.jpeg`. `/parent-v2`(또는 `?cover=parent`)에서 공유 → `cover-parent-feed.jpeg`.
 - 배포 시 **`VITE_SITE_URL`** 을 반드시 설정해야 OG/피드 이미지가 절대 URL로 들어가서 미리보기가 나옵니다.
 - **미리보기 이미지가 예전 걸로 보일 때(캐시):** `.env` 또는 Cloudflare 환경 변수에 **`VITE_OG_IMAGE_VERSION=2`** 처럼 값을 넣고 다시 빌드·배포하면 이미지 URL에 `?v=2`가 붙어 카카오/메신저가 새로 가져옵니다. 다음에 갱신할 때는 숫자만 바꾸면 됨 (예: 3).
 
-**부모님용 경로:** `https://도메인/parent` (추천) 또는 `https://도메인/?cover=parent`. `public/cover-parent.jpeg`(Cover 표시용), `public/cover-parent-feed.jpeg`(공유 미리보기용)를 준비하세요.
+**부모님용 경로:** `https://도메인/parent-v2` (추천) 또는 `https://도메인/?cover=parent`. `public/cover-parent.jpeg`(Cover 표시용), `public/cover-parent-feed.jpeg`(공유 미리보기용)를 준비하세요.
 
 Currently, two official plugins are available:
 

@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
   const ogImageUrl = (siteUrl ? `${siteUrl}/cover.jpeg` : '/cover.jpeg') + versionQuery
   const ogUrl = siteUrl // 빌드 시 없으면 og:url은 placeholder 유지
   const parentOgImageUrl = (siteUrl ? `${siteUrl}/cover-parent-feed.jpeg` : '/cover-parent-feed.jpeg') + versionQuery
-  const parentOgUrl = siteUrl ? `${siteUrl}/parent` : '/parent'
+  const parentOgUrl = siteUrl ? `${siteUrl}/parent-v2` : '/parent-v2'
 
   let buildOutDir = 'dist'
 

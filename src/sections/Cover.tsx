@@ -5,15 +5,18 @@ import styles from './Cover.module.css'
 
 /** 메인 사진 기본 경로: public/cover.jpeg 에 넣으면 자동 표시 */
 const DEFAULT_COVER_IMAGE = '/cover.jpeg'
-/** /parent 경로일 때만 사용 (기존 비율 이미지) */
+/** /parent-v2 경로일 때만 사용 (기존 비율 이미지) */
 const PARENT_COVER_IMAGE = '/cover-parent.jpeg'
 
 const WEEKDAY_EN = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
 
 function isParentPath(): boolean {
   if (typeof window === 'undefined') return false
-  const seg = window.location.pathname.replace(/^\/|\/$/g, '')
-  return seg === 'parent'
+  const pathname = window.location.pathname
+  // /parent-v2, /parent-v2/, 또는 base path 있어도 /xxx/parent-v2 형태 매칭
+  const pathMatch = /\/parent-v2(?:\/|$)/.test(pathname)
+  const query = new URLSearchParams(window.location.search).get('cover')
+  return pathMatch || query === 'parent'
 }
 
 function formatDateTime(dateStr: string, timeStr: string): string {
