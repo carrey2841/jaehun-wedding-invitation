@@ -31,6 +31,17 @@ if (existsSync(coverOpt)) {
   console.log('배포용 커버: cover-optimized.jpg → cover.jpeg')
 }
 
+// 2-2) cover-parent → cover-parent.jpeg 로 서빙
+const coverParentOpt = join(distDir, 'cover-parent-optimized.jpg')
+if (existsSync(coverParentOpt)) {
+  for (const name of readdirSync(distDir)) {
+    if (/^cover-parent\.(jpeg|jpg|png|webp|gif)$/i.test(name)) rmSync(join(distDir, name), { force: true })
+  }
+  copyFileSync(coverParentOpt, join(distDir, 'cover-parent.jpeg'))
+  unlinkSync(coverParentOpt)
+  console.log('배포용 부모님 커버: cover-parent-optimized.jpg → cover-parent.jpeg')
+}
+
 // 3) invitation → invitation.jpg 로 서빙
 const invOpt = join(distDir, 'invitation-optimized.jpg')
 if (existsSync(invOpt)) {

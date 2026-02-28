@@ -64,6 +64,19 @@ async function main() {
     totalAfter += out.after
   }
 
+  // 1-2) cover-parent.* → cover-parent-optimized.jpg (부모님용 공유 이미지)
+  const coverParentFile = publicFiles.find((f) => /^cover-parent\.(jpeg|jpg|png|webp|gif)$/i.test(f))
+  if (coverParentFile) {
+    const out = await optimizeOne(
+      sharp,
+      join(publicDir, coverParentFile),
+      join(publicDir, 'cover-parent-optimized.jpg'),
+      `cover-parent (${coverParentFile})`
+    )
+    totalBefore += out.before
+    totalAfter += out.after
+  }
+
   // 2) invitation.png / invitation.jpg 등 → invitation-optimized.jpg
   const invitationFile = publicFiles.find((f) => /^invitation\.(jpeg|jpg|png|webp|gif)$/i.test(f))
   if (invitationFile) {
@@ -121,12 +134,12 @@ async function main() {
       console.log('완료. 원본은 public/gallery-backup 에 있습니다.')
     }
   }
-  if (!replace && (galleryFiles.length > 0 || coverFile || invitationFile)) {
-    console.log('\n최적화본: public/gallery-optimized, public/cover-optimized.jpg, public/invitation-optimized.jpg')
+  if (!replace && (galleryFiles.length > 0 || coverFile || coverParentFile || invitationFile)) {
+    console.log('\n최적화본: public/gallery-optimized, public/cover-optimized.jpg, public/cover-parent-optimized.jpg, public/invitation-optimized.jpg')
     if (galleryFiles.length > 0) console.log('갤러리만 원본 교체: pnpm run optimize:gallery -- --replace')
   }
-  if (totalBefore === 0 && !coverFile && !invitationFile) {
-    console.log('최적화할 이미지가 없습니다. (public/cover.*, public/invitation.*, public/gallery/)')
+  if (totalBefore === 0 && !coverFile && !coverParentFile && !invitationFile) {
+    console.log('최적화할 이미지가 없습니다. (public/cover.*, public/cover-parent.*, public/invitation.*, public/gallery/)')
   }
 }
 

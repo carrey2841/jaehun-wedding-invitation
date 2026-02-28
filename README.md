@@ -38,6 +38,11 @@ pnpm run optimize:gallery -- --replace  # gallery 만 원본 백업 후 최적�
 
 제품 링크 관리에 웹 도메인이 없으면 피드는 보여도 **버튼이 아예 노출되지 않습니다.** 링크 주소의 도메인은 반드시 여기 등록된 값과 같아야 합니다.
 
+**부모님용 공유 이미지:** 아래 둘 중 편한 방식으로 사용하면, 카카오톡 공유하기 버튼으로 보낼 때 **다른 이미지**가 피드에 노출됩니다. `public/cover-parent.jpeg`에 부모님용 사진을 넣어 두세요.
+- **Path:** `https://도메인/parent` (추천)
+- **Query:** `https://도메인/?cover=parent`
+(이미지 URL이 달라서 카카오 캐시와도 별도로 동작합니다.)
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh

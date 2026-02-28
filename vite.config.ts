@@ -34,6 +34,8 @@ export default defineConfig(({ mode }) => {
             contentType = types[ext] ?? contentType
           } else if (url === '/cover.jpeg' || url === '/cover.jpg' || url === '/cover.png') {
             optimizedPath = join(cwd, 'public', 'cover-optimized.jpg')
+          } else if (url === '/cover-parent.jpeg' || url === '/cover-parent.jpg' || url === '/cover-parent.png') {
+            optimizedPath = join(cwd, 'public', 'cover-parent-optimized.jpg')
           } else if (url === '/invitation.jpg' || url === '/invitation.png') {
             optimizedPath = join(cwd, 'public', 'invitation-optimized.jpg')
           }

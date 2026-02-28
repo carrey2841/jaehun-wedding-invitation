@@ -71,7 +71,16 @@ export function Share() {
       (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SITE_URL
         ? String(import.meta.env.VITE_SITE_URL).replace(/\/$/, '')
         : null) ?? (typeof window !== 'undefined' ? window.location.origin : '')
-    const coverImageUrl = `${siteOrigin}/cover.jpeg`
+    const isParentVariant =
+      typeof window !== 'undefined' &&
+      (() => {
+        const seg = window.location.pathname.replace(/^\/|\/$/g, '')
+        const fromPath = seg === 'parent'
+        const fromQuery = new URLSearchParams(window.location.search).get('cover') === 'parent'
+        return fromPath || fromQuery
+      })()
+    const coverFileName = isParentVariant ? 'cover-parent.jpeg' : 'cover.jpeg'
+    const coverImageUrl = `${siteOrigin}/${coverFileName}`
 
     if (sdkReady && window.Kakao?.Share) {
       try {
