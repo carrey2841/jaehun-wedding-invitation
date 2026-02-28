@@ -42,6 +42,20 @@ if (existsSync(coverParentOpt)) {
   console.log('배포용 부모님 커버: cover-parent-optimized.jpg → cover-parent.jpeg')
 }
 
+// 2-3) 카카오 피드용 1:1 이미지 (잘림 방지)
+const coverFeedOpt = join(distDir, 'cover-feed-optimized.jpg')
+if (existsSync(coverFeedOpt)) {
+  copyFileSync(coverFeedOpt, join(distDir, 'cover-feed.jpeg'))
+  unlinkSync(coverFeedOpt)
+  console.log('배포용 피드 커버: cover-feed-optimized.jpg → cover-feed.jpeg')
+}
+const coverParentFeedOpt = join(distDir, 'cover-parent-feed-optimized.jpg')
+if (existsSync(coverParentFeedOpt)) {
+  copyFileSync(coverParentFeedOpt, join(distDir, 'cover-parent-feed.jpeg'))
+  unlinkSync(coverParentFeedOpt)
+  console.log('배포용 피드 부모님 커버: cover-parent-feed-optimized.jpg → cover-parent-feed.jpeg')
+}
+
 // 3) invitation → invitation.jpg 로 서빙
 const invOpt = join(distDir, 'invitation-optimized.jpg')
 if (existsSync(invOpt)) {

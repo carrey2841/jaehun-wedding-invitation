@@ -79,7 +79,7 @@ export function Share() {
         const fromQuery = new URLSearchParams(window.location.search).get('cover') === 'parent'
         return fromPath || fromQuery
       })()
-    const coverFileName = isParentVariant ? 'cover-parent.jpeg' : 'cover.jpeg'
+    const coverFileName = isParentVariant ? 'cover-parent-feed.jpeg' : 'cover-feed.jpeg'
     const coverImageUrl = `${siteOrigin}/${coverFileName}`
 
     if (sdkReady && window.Kakao?.Share) {

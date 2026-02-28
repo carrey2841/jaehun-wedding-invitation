@@ -18,6 +18,7 @@ const optimizedDir = join(publicDir, 'gallery-optimized')
 
 const MAX_LONG_EDGE = 1200
 const JPEG_QUALITY = 82
+const FEED_IMAGE_SIZE = 800
 const numberedImage = /^\d+\.(jpg|jpeg|png|gif|webp)$/i
 const imageExt = /\.(jpg|jpeg|png|gif|webp)$/i
 
@@ -33,6 +34,22 @@ async function optimizeOne(sharp, srcPath, outPath, label) {
   const afterStat = await fs.promises.stat(outPath)
   const pct = before ? Math.round((1 - afterStat.size / before) * 100) : 0
   console.log(`  ${label}: ${(before / 1024 / 1024).toFixed(2)} MB → ${(afterStat.size / 1024).toFixed(0)} KB (${pct}% 감소)`)
+  return { before, after: afterStat.size }
+}
+
+/** 카카오 피드용 1:1 정사각형 (잘림 방지) */
+async function optimizeOneFeed(sharp, srcPath, outPath, label) {
+  const fs = await import('fs')
+  const stat = await fs.promises.stat(srcPath).catch(() => null)
+  const before = stat?.size ?? 0
+  await sharp
+    .default(srcPath)
+    .resize(FEED_IMAGE_SIZE, FEED_IMAGE_SIZE, { fit: 'cover', position: 'center' })
+    .jpeg({ quality: JPEG_QUALITY, mozjpeg: true })
+    .toFile(outPath)
+  const afterStat = await fs.promises.stat(outPath)
+  const pct = before ? Math.round((1 - afterStat.size / before) * 100) : 0
+  console.log(`  ${label} (피드 1:1): ${(before / 1024 / 1024).toFixed(2)} MB → ${(afterStat.size / 1024).toFixed(0)} KB (${pct}% 감소)`)
   return { before, after: afterStat.size }
 }
 
@@ -62,6 +79,14 @@ async function main() {
     )
     totalBefore += out.before
     totalAfter += out.after
+    const outFeed = await optimizeOneFeed(
+      sharp,
+      join(publicDir, coverFile),
+      join(publicDir, 'cover-feed-optimized.jpg'),
+      `cover (${coverFile})`
+    )
+    totalBefore += outFeed.before
+    totalAfter += outFeed.after
   }
 
   // 1-2) cover-parent.* → cover-parent-optimized.jpg (부모님용 공유 이미지)
@@ -75,6 +100,14 @@ async function main() {
     )
     totalBefore += out.before
     totalAfter += out.after
+    const outFeed = await optimizeOneFeed(
+      sharp,
+      join(publicDir, coverParentFile),
+      join(publicDir, 'cover-parent-feed-optimized.jpg'),
+      `cover-parent (${coverParentFile})`
+    )
+    totalBefore += outFeed.before
+    totalAfter += outFeed.after
   }
 
   // 2) invitation.png / invitation.jpg 등 → invitation-optimized.jpg

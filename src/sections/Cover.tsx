@@ -5,8 +5,16 @@ import styles from './Cover.module.css'
 
 /** 메인 사진 기본 경로: public/cover.jpeg 에 넣으면 자동 표시 */
 const DEFAULT_COVER_IMAGE = '/cover.jpeg'
+/** /parent 경로일 때만 사용 (기존 비율 이미지) */
+const PARENT_COVER_IMAGE = '/cover-parent.jpeg'
 
 const WEEKDAY_EN = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
+
+function isParentPath(): boolean {
+  if (typeof window === 'undefined') return false
+  const seg = window.location.pathname.replace(/^\/|\/$/g, '')
+  return seg === 'parent'
+}
 
 function formatDateTime(dateStr: string, timeStr: string): string {
   if (!dateStr || !timeStr) return '2026. 05. 16 SAT 17:00 PM'
@@ -22,7 +30,7 @@ export function Cover() {
   const { heroImageUrl } = cover
   const { date, time } = venue
   const [imageError, setImageError] = useState(false)
-  const src = heroImageUrl || DEFAULT_COVER_IMAGE
+  const src = isParentPath() ? PARENT_COVER_IMAGE : (heroImageUrl || DEFAULT_COVER_IMAGE)
   const showImage = !imageError
   const dateTimeLine = formatDateTime(date ?? '2026-05-16', time ?? '17:00')
 
