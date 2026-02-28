@@ -81,7 +81,11 @@ export function Share() {
       })()
     // 기본: cover.jpeg. /parent 경로에서는 카카오 피드에만 cover-parent-feed.jpeg 사용.
     const feedImageName = isParentVariant ? 'cover-parent-feed.jpeg' : 'cover.jpeg'
-    const coverImageUrl = `${siteOrigin}/${feedImageName}`
+    const imageVersion = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_OG_IMAGE_VERSION
+      ? String(import.meta.env.VITE_OG_IMAGE_VERSION).trim()
+      : '') || ''
+    const versionQuery = imageVersion ? `?v=${imageVersion}` : ''
+    const coverImageUrl = `${siteOrigin}/${feedImageName}${versionQuery}`
 
     if (sdkReady && window.Kakao?.Share) {
       try {

@@ -7,10 +7,13 @@ import { createReadStream, existsSync, readFileSync, writeFileSync } from 'fs'
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   const siteUrl = (env.VITE_SITE_URL ?? '').replace(/\/$/, '')
+  // 미리보기 이미지 캐시 강제 갱신: VITE_OG_IMAGE_VERSION=2 등 설정 후 재빌드하면 ?v=2 붙음
+  const imageVersion = (env.VITE_OG_IMAGE_VERSION ?? '').trim()
+  const versionQuery = imageVersion ? `?v=${imageVersion}` : ''
   // 카카오/메신저 크롤러는 절대 URL만 인식함. 배포 시 VITE_SITE_URL 필수.
-  const ogImageUrl = siteUrl ? `${siteUrl}/cover.jpeg` : '/cover.jpeg'
+  const ogImageUrl = (siteUrl ? `${siteUrl}/cover.jpeg` : '/cover.jpeg') + versionQuery
   const ogUrl = siteUrl // 빌드 시 없으면 og:url은 placeholder 유지
-  const parentOgImageUrl = siteUrl ? `${siteUrl}/cover-parent-feed.jpeg` : '/cover-parent-feed.jpeg'
+  const parentOgImageUrl = (siteUrl ? `${siteUrl}/cover-parent-feed.jpeg` : '/cover-parent-feed.jpeg') + versionQuery
   const parentOgUrl = siteUrl ? `${siteUrl}/parent` : '/parent'
 
   let buildOutDir = 'dist'
